@@ -1,0 +1,154 @@
+/*
+ * FOR LAPTOP & TABLET
+ */
+.searchBox {
+  margin: 20vh auto;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background-color: rgba(253, 255, 255, 0.9);
+  padding: 3rem;
+  text-align: center;
+  width: 25rem;
+  z-index: 10;
+  position: fixed;
+  left: calc(50% - 15.5rem);
+}
+
+.control {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.control h1 {
+  text-align: center;
+  color: #0cb1ce;
+  font-weight: bolder;
+  margin-bottom: 0em;
+}
+
+.control p {
+  text-align: center;
+  color: #141a29;
+  font-weight: lighter;
+  font-size: medium;
+}
+
+.control input {
+  display: block;
+  font: inherit;
+  text-transform: uppercase;
+  font-size: x-large;
+  text-align: center;
+  color: antiquewhite;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.436);
+  border: 1px solid #1dd5f9;
+  padding: 1.5rem 0.25rem;
+  margin: 0.5rem;
+}
+
+.control input::placeholder {
+  color: rgb(170, 178, 209);
+}
+
+.control button {
+  font: inherit;
+  font-size: larger;
+  color: snow;
+  background-color: #082267;
+  border-radius: 10px;
+  border: 1px solid #082267;
+  padding: 1.5rem 0.25rem;
+  margin: 0.5rem;
+}
+
+/*
+ * FOR SMARTPHONE
+ */
+@media (max-width: 480px) {
+  .searchBox {
+    margin: 20vh auto;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: rgba(253, 255, 255, 0.9);
+    padding: 2rem;
+    text-align: center;
+    width: 13rem;
+    z-index: 10;
+    position: fixed;
+    left: calc(50% - 8.5rem);
+  }
+
+  .control {
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .control h1 {
+    text-align: center;
+    color: #0cb1ce;
+    font-weight: bolder;
+    margin-bottom: 0em;
+    font-size: x-large;
+  }
+
+  .control p {
+    text-align: center;
+    color: #141a29;
+    font-weight: lighter;
+    font-size: medium;
+  }
+
+  .control input {
+    display: block;
+    font: inherit;
+    text-transform: uppercase;
+    font-size: large;
+    text-align: center;
+    color: antiquewhite;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.436);
+    border: 1px solid #1dd5f9;
+    padding: 1rem 0.25rem;
+    margin: 0.5rem;
+  }
+
+  .control input::placeholder {
+    color: rgb(170, 178, 209);
+  }
+
+  .control button {
+    font: inherit;
+    font-size: larger;
+    color: snow;
+    background-color: #082267;
+    border-radius: 10px;
+    border: 1px solid #082267;
+    padding: 1rem 0.25rem;
+    margin: 0.5rem;
+    font-size: medium;
+  }
+}
+
+/* .videoPlayer {
+  background-color: black;
+  height: 100vh;
+}
+
+.cityName {
+  position: absolute;
+  top: 2rem;
+  left: 1rem;
+  color: white;
+  font-family: "Courier Prime", monospace;
+}
+
+.cityName h1 {
+  font-size: 30px;
+}
+
+.cityName p {
+  font-size: 25px;
+} */
