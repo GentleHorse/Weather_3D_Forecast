@@ -20,7 +20,7 @@ export default function App() {
 
   async function getGeocoding() {
     const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}`
     );
     const data = await response.json();
 
