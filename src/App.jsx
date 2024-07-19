@@ -15,18 +15,48 @@ export default function App() {
   }
 
   const apiKey = "7a11ff201910162a879e7aa32d259914";
+
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
 
-  async function getWeatherData() {
-    const response = await fetch(apiUrl);
+  async function getGeocoding() {
+    const response = await fetch(
+      `http://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}`
+    );
     const data = await response.json();
 
-    if (response.ok && data) {
-      setWeatherData(data);
-      closewindowHandler();
+    if (
+      !response.ok ||
+      data[0].lat === undefined ||
+      data[0].lon === undefined
+    ) {
+      alert("Please enter a valid city name");
+      setLocation("");
+
+      return;
     }
 
-    if (!response.ok) {
+    return data;
+  }
+
+  async function getWeatherData() {
+    try {
+      const geoData = await getGeocoding();
+      const response = await fetch(
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${geoData[0].lat}&lon=${geoData[0].lon}&appid=${apiKey}`
+      );
+
+      const data = await response.json();
+
+      if (response.ok && data) {
+        setWeatherData(data);
+        closewindowHandler();
+      }
+
+      if (!response.ok) {
+        alert("Please enter a valid city name");
+        setLocation("");
+      }
+    } catch (error) {
       alert("Please enter a valid city name");
       setLocation("");
     }

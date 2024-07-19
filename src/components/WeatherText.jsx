@@ -46,7 +46,7 @@ export default function WeatherText({ location, weather, scale }) {
               bevelOffset={0}
               bevelSegments={5}
             >
-              Temperature: {weather.main.temp.toFixed(1)}°C
+              Temperature: {weather.temp.toFixed(1)}°C
               <meshBasicMaterial
                 color={[
                   1 * TEXT_COLOR_EMISSION_STRENGTH,
@@ -71,7 +71,7 @@ export default function WeatherText({ location, weather, scale }) {
               bevelOffset={0}
               bevelSegments={5}
             >
-              Humidity: {weather.main.humidity}%
+              Humidity: {weather.humidity}%
               <meshBasicMaterial
                 color={[
                   1 * TEXT_COLOR_EMISSION_STRENGTH,
@@ -96,7 +96,7 @@ export default function WeatherText({ location, weather, scale }) {
               bevelOffset={0}
               bevelSegments={5}
             >
-              Wind Speed: {weather.wind.speed.toFixed(1)}MPH
+              Wind Speed: {weather.wind_speed.toFixed(1)}MPH
               <meshBasicMaterial
                 color={[
                   1 * TEXT_COLOR_EMISSION_STRENGTH,

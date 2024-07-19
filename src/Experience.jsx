@@ -13,8 +13,11 @@ import PostProcessingEffects from "./components/PostProcessingEffects.jsx";
 import FallingWeatherIcons from "./components/FallingWeatherIcons.jsx";
 
 export default function Experience(props) {
+
+  const weatherDataToday =  props.weather.current;
+
   let weatherCondition;
-  switch (props.weather.weather[0].main) {
+  switch (weatherDataToday.weather[0].main) {
     case "Clear":
       weatherCondition = "clear";
       break;
@@ -58,11 +61,33 @@ export default function Experience(props) {
 
   const marina = useGLTF("./models/Marina-1276/Marina-1276.glb");
 
+  console.log(props)
+
+  /**
+   * Memo - log out - today - tomorrow
+   */
+  // let dateObjToday = new Date(props.weather.current.dt * 1000);
+  // let utcStringToday = dateObjToday.toUTCString();
+
+  // console.log(utcStringToday.slice(0, 3)); // 'Www' day of week
+  // console.log(utcStringToday.slice(5, 7)); //  'dd' day of month
+  // console.log(utcStringToday.slice(8, 11)); //  'Mmm' month
+  // console.log(utcStringToday.slice(12, 16)); //  'yyyy' year
+
+
+  // let dateObjTomorrow = new Date(props.weather.daily[0].dt * 1000);
+  // let utcStringTomorrow = dateObjTomorrow.toUTCString();
+
+  // console.log(utcStringTomorrow.slice(0, 3)); // 'Www' day of week
+  // console.log(utcStringTomorrow.slice(5, 7)); //  'dd' day of month
+  // console.log(utcStringTomorrow.slice(8, 11)); //  'Mmm' month
+  // console.log(utcStringTomorrow.slice(12, 16)); //  'yyyy' year
+
   return (
     <>
       {/* DEBUG TOOLS */}
       {/* <Perf position="top-left" /> */}
-      {/* <OrbitControls makeDefault /> */}
+      <OrbitControls makeDefault />
       {/* <axesHelper /> */}
 
       {/* ENVIRONMENT */}
@@ -72,14 +97,14 @@ export default function Experience(props) {
       <color args={["black"]} attach="background" />
 
       {/* POSTPROCESSING */}
-      <PostProcessingEffects />
+      {/* <PostProcessingEffects /> */}
 
-      <PresentationControls
+      {/* <PresentationControls
         global
         polar={[0.0, 0.0]}
         azimuth={[-0.95, 1.2]}
         // config={{ mass: 2, tension: 400 }}
-      >
+      > */}
         <Physics debug={false} gravity={[0, -3.5, 0]}>
           {/* SCENE */}
           <Scene weather={weatherCondition} />
@@ -105,7 +130,7 @@ export default function Experience(props) {
             <RigidBody type="fixed">
               <WeatherText
                 location={props.location}
-                weather={props.weather}
+                weather={weatherDataToday}
                 scale={0.5}
               />
             </RigidBody>
@@ -121,7 +146,7 @@ export default function Experience(props) {
             />
           </RigidBody>
         </Physics>
-      </PresentationControls>
+      {/* </PresentationControls> */}
     </>
   );
 }
