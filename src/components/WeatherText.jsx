@@ -2,11 +2,11 @@ import { Center, Text3D } from "@react-three/drei";
 
 const TEXT_COLOR_EMISSION_STRENGTH = 10;
 
-export default function WeatherText({ location, weather, scale }) {
+export default function WeatherText({ location, weather, color, ...props }) {
   return (
-    <group scale={scale}>
+    <group {...props}>
       {/* CITY NAME */}
-      <group position={[-5, -3, 2]}>
+      <group position={[-5, -5, 4]}>
         <Center>
           <Text3D
             font="./fonts/helvetiker_regular.typeface.json"
@@ -21,11 +21,12 @@ export default function WeatherText({ location, weather, scale }) {
           >
             {location.toUpperCase()}
             <meshBasicMaterial
-              color={[
-                1 * TEXT_COLOR_EMISSION_STRENGTH,
-                1 * TEXT_COLOR_EMISSION_STRENGTH,
-                1 * TEXT_COLOR_EMISSION_STRENGTH,
-              ]}
+              // color={[
+              //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+              //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+              //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+              // ]}
+              color={color}
             />
           </Text3D>
         </Center>
@@ -48,11 +49,12 @@ export default function WeatherText({ location, weather, scale }) {
             >
               Temperature: {weather.temp.toFixed(1)}°C
               <meshBasicMaterial
-                color={[
-                  1 * TEXT_COLOR_EMISSION_STRENGTH,
-                  1 * TEXT_COLOR_EMISSION_STRENGTH,
-                  1 * TEXT_COLOR_EMISSION_STRENGTH,
-                ]}
+                // color={[
+                //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+                //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+                //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+                // ]}
+                color={color}
               />
             </Text3D>
           </Center>
@@ -73,11 +75,12 @@ export default function WeatherText({ location, weather, scale }) {
             >
               Humidity: {weather.humidity}%
               <meshBasicMaterial
-                color={[
-                  1 * TEXT_COLOR_EMISSION_STRENGTH,
-                  1 * TEXT_COLOR_EMISSION_STRENGTH,
-                  1 * TEXT_COLOR_EMISSION_STRENGTH,
-                ]}
+                // color={[
+                //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+                //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+                //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+                // ]}
+                color={color}
               />
             </Text3D>
           </Center>
@@ -98,11 +101,12 @@ export default function WeatherText({ location, weather, scale }) {
             >
               Wind Speed: {weather.wind_speed.toFixed(1)}MPH
               <meshBasicMaterial
-                color={[
-                  1 * TEXT_COLOR_EMISSION_STRENGTH,
-                  1 * TEXT_COLOR_EMISSION_STRENGTH,
-                  1 * TEXT_COLOR_EMISSION_STRENGTH,
-                ]}
+                // color={[
+                //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+                //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+                //   1 * TEXT_COLOR_EMISSION_STRENGTH,
+                // ]}
+                color={color}
               />
             </Text3D>
           </Center>

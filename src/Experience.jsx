@@ -103,36 +103,40 @@ export default function Experience(props) {
         azimuth={[-0.95, 1.2]}
         // config={{ mass: 2, tension: 400 }}
       > */}
-        <Physics debug={true} gravity={[0, -3.5, 0]}>
+        <Physics debug={false} gravity={[0, -3.5, 0]}>
           {/* SCENE */}
           <Scene weather={weatherCondition} />
 
           {/* FALLING WEAHTER ICONS */}
-          {/* <FallingWeatherIcons weatherCondition={weatherCondition} /> */}
+          <FallingWeatherIcons weatherCondition={weatherCondition} />
 
           {/* WEATHER ICON */}
-          {/* <Suspense>
+          <Suspense>
             <RigidBody type="fixed">
               <group scale={0.5}>
                 <primitive
                   object={loadedIcon.scene}
-                  position={[-5, 2.5, 0]}
-                  scale={4.5}
+                  position={[0, 5, -3]}
+                  rotation={[-Math.PI * 0.5, 0, Math.PI * 0.065]}
+                  scale={7.5}
                 />
               </group>
             </RigidBody>
-          </Suspense> */}
+          </Suspense>
 
           {/* WEATHER TEXT */}
-          {/* <Suspense>
+          <Suspense>
             <RigidBody type="fixed">
               <WeatherText
                 location={props.location}
                 weather={weatherDataToday}
+                color="#1C1C1C"
                 scale={0.5}
+                rotation={[-Math.PI * 0.5, 0, Math.PI * 0.065]}
+                position={[6, 0, 0]}
               />
             </RigidBody>
-          </Suspense> */}
+          </Suspense>
 
           {/* MARINA */}
           {/* <RigidBody type="fixed" colliders="hull">
