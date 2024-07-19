@@ -1,0 +1,120 @@
+import { useRef, useMemo } from "react";
+import { useGLTF } from "@react-three/drei";
+
+export default function Clear(props) {
+  const { nodes, materials } = useGLTF("./models/weather-icons/clear.glb");
+  return (
+<group {...props} dispose={null}>
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve032.geometry}
+    material={materials.clearMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve033.geometry}
+    material={materials.clearMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve034.geometry}
+    material={materials.clearMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve035.geometry}
+    material={materials.clearMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve036.geometry}
+    material={materials.clearMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve037.geometry}
+    material={materials.clearMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve038.geometry}
+    material={materials.clearMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve039.geometry}
+    material={materials.clearMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve040.geometry}
+    material={materials.clearMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve041.geometry}
+    material={materials.edgeMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve042.geometry}
+    material={materials.edgeMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve043.geometry}
+    material={materials.edgeMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve044.geometry}
+    material={materials.edgeMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve045.geometry}
+    material={materials.edgeMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve046.geometry}
+    material={materials.edgeMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve047.geometry}
+    material={materials.edgeMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve048.geometry}
+    material={materials.edgeMaterial}
+  />
+  <mesh
+    castShadow
+    receiveShadow
+    geometry={nodes.Curve049.geometry}
+    material={materials.edgeMaterial}
+  />
+</group>
+  );
+}
+
+useGLTF.preload("./models/weather-icons/clear.glb");

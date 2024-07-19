@@ -61,8 +61,6 @@ export default function Experience(props) {
 
   const marina = useGLTF("./models/Marina-1276/Marina-1276.glb");
 
-  console.log(props)
-
   /**
    * Memo - log out - today - tomorrow
    */
@@ -91,10 +89,10 @@ export default function Experience(props) {
       {/* <axesHelper /> */}
 
       {/* ENVIRONMENT */}
-      <Environment preset="night" />
-      {/* <directionalLight castShadow position={[1, 2, 3]} intensity={0.5} /> */}
-      {/* <ambientLight intensity={0.5} /> */}
-      <color args={["black"]} attach="background" />
+      <Environment preset="forest" />
+      <directionalLight castShadow position={[1, 2, 3]} intensity={0.5} />
+      <ambientLight intensity={0.5} />
+      <color args={["white"]} attach="background" />
 
       {/* POSTPROCESSING */}
       {/* <PostProcessingEffects /> */}
@@ -105,15 +103,15 @@ export default function Experience(props) {
         azimuth={[-0.95, 1.2]}
         // config={{ mass: 2, tension: 400 }}
       > */}
-        <Physics debug={false} gravity={[0, -3.5, 0]}>
+        <Physics debug={true} gravity={[0, -3.5, 0]}>
           {/* SCENE */}
           <Scene weather={weatherCondition} />
 
           {/* FALLING WEAHTER ICONS */}
-          <FallingWeatherIcons weatherCondition={weatherCondition} />
+          {/* <FallingWeatherIcons weatherCondition={weatherCondition} /> */}
 
           {/* WEATHER ICON */}
-          <Suspense>
+          {/* <Suspense>
             <RigidBody type="fixed">
               <group scale={0.5}>
                 <primitive
@@ -123,10 +121,10 @@ export default function Experience(props) {
                 />
               </group>
             </RigidBody>
-          </Suspense>
+          </Suspense> */}
 
           {/* WEATHER TEXT */}
-          <Suspense>
+          {/* <Suspense>
             <RigidBody type="fixed">
               <WeatherText
                 location={props.location}
@@ -134,17 +132,17 @@ export default function Experience(props) {
                 scale={0.5}
               />
             </RigidBody>
-          </Suspense>
+          </Suspense> */}
 
           {/* MARINA */}
-          <RigidBody type="fixed" colliders="hull">
+          {/* <RigidBody type="fixed" colliders="hull">
             <primitive
               object={marina.scene}
               scale={1.2}
               position={[-1.5, -2.5, 4]}
               rotation-y={Math.PI * 0.7}
             />
-          </RigidBody>
+          </RigidBody> */}
         </Physics>
       {/* </PresentationControls> */}
     </>
