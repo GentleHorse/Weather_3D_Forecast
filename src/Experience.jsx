@@ -73,7 +73,7 @@ export default function Experience(props) {
   // console.log(utcStringToday.slice(12, 16)); //  'yyyy' year
 
 
-  // let dateObjTomorrow = new Date(props.weather.daily[0].dt * 1000);
+  // let dateObjTomorrow = new Date(props.weather.daily[1].dt * 1000);
   // let utcStringTomorrow = dateObjTomorrow.toUTCString();
 
   // console.log(utcStringTomorrow.slice(0, 3)); // 'Www' day of week
@@ -89,7 +89,7 @@ export default function Experience(props) {
       {/* <axesHelper /> */}
 
       {/* ENVIRONMENT */}
-      <Environment preset="forest" />
+      <Environment preset="apartment" />
       <directionalLight castShadow position={[1, 2, 3]} intensity={0.5} />
       <ambientLight intensity={0.5} />
       <color args={["white"]} attach="background" />

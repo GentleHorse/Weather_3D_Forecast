@@ -13,13 +13,14 @@ export default function Stage(props) {
       <mesh
         geometry={nodes.table.geometry}
         material={materials.wood}
-        scale={1.386}
+        scale={[1.689, 1.386, 1.386]}
       />
       <mesh
-        geometry={nodes["news-paper"].geometry}
-        material={materials.paper}
-        position={[2.535, 0.387, 0.473]}
+        geometry={nodes.newspaper.geometry}
+        material={materials["news-paper"]}
+        position={[6.369, 0.387, 3.313]}
         rotation={[0, 0.214, 0]}
+        scale={[1.342, 1.208, 1.375]}
       />
       <mesh
         geometry={nodes.cup001.geometry}

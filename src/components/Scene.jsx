@@ -28,12 +28,12 @@ export default function Scene(props) {
       {/* <group position={[0, 8, 0]} rotation={[0, 0, 0]}>
         <Root>
           <Container flexDirection="column" gap={15}>
-            <Text fontSize={65} color="#000000">
+            <UikitText fontSize={65} color="#000000">
               Ambience of Light
-            </Text>
-            <Text fontSize={18}>
+            </UikitText>
+            <UikitText fontSize={18}>
               Here is the short discription of the project.
-            </Text>
+            </UikitText>
           </Container>
         </Root>
       </group> */}
