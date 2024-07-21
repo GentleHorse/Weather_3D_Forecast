@@ -13,33 +13,31 @@ export default function Stage(props) {
       <mesh
         geometry={nodes.table.geometry}
         material={materials.wood}
-        scale={[1.689, 1.386, 1.386]}
+        scale={[1.408, 1, 1.112]}
       />
       <mesh
         geometry={nodes.newspaper.geometry}
         material={materials["news-paper"]}
-        position={[6.369, 0.387, 3.313]}
-        rotation={[0, 0.214, 0]}
-        scale={[1.342, 1.208, 1.375]}
+      />
+      <mesh
+        geometry={nodes["glass-bowl"].geometry}
+        material={materials["glass-bowl-material"]}
+      />
+      <mesh
+        geometry={nodes.spoon.geometry}
+        material={materials["spoon-material"]}
       />
       <mesh
         geometry={nodes.cup001.geometry}
         material={materials["coffee-cup"]}
-        position={[-9.038, 2.683, -0.555]}
-        rotation={[0, 1.567, 0]}
-        scale={[1.599, 1.114, 1.599]}
       />
       <mesh
         geometry={nodes.saucer001.geometry}
         material={materials["coffee-cup"]}
-        position={[-9.02, 1.881, -0.529]}
-        scale={1.633}
       />
       <mesh
         geometry={nodes["coffee-liquid"].geometry}
         material={materials["coffee-liquid"]}
-        position={[-9.055, 3.375, -0.55]}
-        scale={1.52}
       />
     </group>
   );

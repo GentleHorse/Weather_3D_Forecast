@@ -11,7 +11,6 @@ import {
 import { Perf } from "r3f-perf";
 import { Physics, RigidBody } from "@react-three/rapier";
 import Stage from "./components/models/stage/Stage.jsx";
-import WeatherText from "./components/WeatherText.jsx";
 import PostProcessingEffects from "./components/PostProcessingEffects.jsx";
 import FallingWeatherIcons from "./components/FallingWeatherIcons.jsx";
 
@@ -166,9 +165,6 @@ export default function Experience(props) {
       <ambientLight intensity={0.5} />
       <color args={["white"]} attach="background" />
 
-      {/* POSTPROCESSING */}
-      {/* <PostProcessingEffects /> */}
-
       {/* <PresentationControls
         global
         polar={[0.0, 0.0]}
@@ -178,7 +174,7 @@ export default function Experience(props) {
       <Physics debug={true} gravity={[0, -3.5, 0]}>
         {/* STAGE */}
         <group rotation={[0, -Math.PI * 0.065, 0]}>
-          <RigidBody type="fixed">
+          <RigidBody type="fixed" colliders="trimesh">
             <Stage />
           </RigidBody>
         </group>
@@ -200,19 +196,8 @@ export default function Experience(props) {
           ))}
         </group>
 
-        {/* WEATHER TEXT */}
+        {/* FORECAST TEXTS */}
         <ForecastTexts weekWeather={weekWeather} />
-
-        {/* <Suspense>
-          <WeatherText
-            location={props.location}
-            weather={weatherDataToday}
-            color="#1C1C1C"
-            scale={0.5}
-            rotation={[-Math.PI * 0.5, 0, Math.PI * 0.065]}
-            position={[0, 0, 0]}
-          />
-        </Suspense> */}
       </Physics>
       {/* </PresentationControls> */}
     </>
