@@ -3,7 +3,49 @@ import { useGLTF } from "@react-three/drei";
 import { InstancedRigidBodies } from "@react-three/rapier";
 import { Geometry, Base, Addition } from "@react-three/csg";
 
-export default function FallingWeatherIcons({ weatherCondition }) {
+export default function FallingWeatherIcons({ weatherDate }) {
+  /**
+   * SET WEATHER CONDITION
+   */
+  let weatherCondition;
+  switch (weatherDate.weather[0].main) {
+    case "Clear":
+      weatherCondition = "clear";
+      break;
+
+    case "Clouds":
+      weatherCondition = "clouds";
+      break;
+
+    case "Rain":
+      weatherCondition = "rain";
+      break;
+
+    case "Drizzle":
+      weatherCondition = "drizzle";
+      break;
+
+    case "Thunderstorm":
+      weatherCondition = "thunderstorm";
+      break;
+
+    case "Snow":
+      weatherCondition = "snow";
+      break;
+
+    case "Mist":
+    case "Smoke":
+    case "Haze":
+    case "Dust":
+    case "Fog":
+    case "Sand":
+    case "Ash":
+    case "Squall":
+    case "Tornado":
+      weatherCondition = "mist";
+      break;
+  }
+
   /**
    * WEATHER ICON GEOMETRIES
    */

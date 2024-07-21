@@ -4,6 +4,7 @@ import {
   OrbitControls,
   Environment,
   Text,
+  Center,
   Clone,
   PresentationControls,
 } from "@react-three/drei";
@@ -14,18 +15,48 @@ import WeatherText from "./components/WeatherText.jsx";
 import PostProcessingEffects from "./components/PostProcessingEffects.jsx";
 import FallingWeatherIcons from "./components/FallingWeatherIcons.jsx";
 
+const WEATHER_ICON_ROTATION = [-Math.PI * 0.5, 0, 0];
+const WEATHER_ICON_POSITION_Y = 2.0;
+const WEATHER_ICON_POSITION_Z = 1.2;
+
 export default function Experience(props) {
   /**
    * WEATHER DATA FROM TODAY TO 7 DAYS AFTER TODAY
    */
-  const weatherDataToday = props.weather.current;
-  const weatherDataDay01 = props.weather.daily[1];
-  const weatherDataDay02 = props.weather.daily[2];
-  const weatherDataDay03 = props.weather.daily[3];
-  const weatherDataDay04 = props.weather.daily[4];
-  const weatherDataDay05 = props.weather.daily[5];
-  const weatherDataDay06 = props.weather.daily[6];
-  const weatherDataDay07 = props.weather.daily[7];
+  const weekWeather = {
+    today: {
+      data: props.weather.current,
+      utcStringdate: new Date(props.weather.current.dt * 1000).toUTCString(),
+    },
+    day01: {
+      data: props.weather.daily[1],
+      utcStringdate: new Date(props.weather.daily[1].dt * 1000).toUTCString(),
+    },
+    day02: {
+      data: props.weather.daily[2],
+      utcStringdate: new Date(props.weather.daily[2].dt * 1000).toUTCString(),
+    },
+    day03: {
+      data: props.weather.daily[3],
+      utcStringdate: new Date(props.weather.daily[3].dt * 1000).toUTCString(),
+    },
+    day04: {
+      data: props.weather.daily[4],
+      utcStringdate: new Date(props.weather.daily[4].dt * 1000).toUTCString(),
+    },
+    day05: {
+      data: props.weather.daily[5],
+      utcStringdate: new Date(props.weather.daily[5].dt * 1000).toUTCString(),
+    },
+    day06: {
+      data: props.weather.daily[6],
+      utcStringdate: new Date(props.weather.daily[6].dt * 1000).toUTCString(),
+    },
+    day07: {
+      data: props.weather.daily[7],
+      utcStringdate: new Date(props.weather.daily[7].dt * 1000).toUTCString(),
+    },
+  };
 
   /**
    * ARRAY FOR POPULATE 7 DAYS 3D WEATHER ICONS
@@ -35,59 +66,59 @@ export default function Experience(props) {
   const weatherIconArrayData = {
     today: {
       key: "today",
-      weatherDate: weatherDataToday,
+      weatherDate: weekWeather.today.data,
       scale: 1.5,
-      position: [10, 2, 6.5],
-      rotation: [-Math.PI * 0.5, 0, 0],
+      position: [12.7, WEATHER_ICON_POSITION_Y, 6.5],
+      rotation: WEATHER_ICON_ROTATION,
     },
     day01: {
       key: "day01",
-      weatherDate: weatherDataDay01,
+      weatherDate: weekWeather.day01.data,
       scale: 1.3,
-      position: [-2.8, 2, 0.5],
-      rotation: [-Math.PI * 0.5, 0, 0],
+      position: [-2.8, WEATHER_ICON_POSITION_Y, WEATHER_ICON_POSITION_Z],
+      rotation: WEATHER_ICON_ROTATION,
     },
     day02: {
       key: "day02",
-      weatherDate: weatherDataDay02,
+      weatherDate: weekWeather.day02.data,
       scale: 1.3,
-      position: [-0.117, 2, 0.5],
-      rotation: [-Math.PI * 0.5, 0, 0],
+      position: [-0.117, WEATHER_ICON_POSITION_Y, WEATHER_ICON_POSITION_Z],
+      rotation: WEATHER_ICON_ROTATION,
     },
     day03: {
       key: "day03",
-      weatherDate: weatherDataDay03,
+      weatherDate: weekWeather.day03.data,
       scale: 1.3,
-      position: [2.566, 2, 0.5],
-      rotation: [-Math.PI * 0.5, 0, 0],
+      position: [2.566, WEATHER_ICON_POSITION_Y, WEATHER_ICON_POSITION_Z],
+      rotation: WEATHER_ICON_ROTATION,
     },
     day04: {
       key: "day04",
-      weatherDate: weatherDataDay04,
+      weatherDate: weekWeather.day04.data,
       scale: 1.3,
-      position: [5.249, 2, 0.5],
-      rotation: [-Math.PI * 0.5, 0, 0],
+      position: [5.249, WEATHER_ICON_POSITION_Y, WEATHER_ICON_POSITION_Z],
+      rotation: WEATHER_ICON_ROTATION,
     },
     day05: {
       key: "day05",
-      weatherDate: weatherDataDay05,
+      weatherDate: weekWeather.day05.data,
       scale: 1.3,
-      position: [7.931, 2, 0.5],
-      rotation: [-Math.PI * 0.5, 0, 0],
+      position: [7.931, WEATHER_ICON_POSITION_Y, WEATHER_ICON_POSITION_Z],
+      rotation: WEATHER_ICON_ROTATION,
     },
     day06: {
       key: "day06",
-      weatherDate: weatherDataDay06,
+      weatherDate: weekWeather.day06.data,
       scale: 1.3,
-      position: [10.615, 2, 0.5],
-      rotation: [-Math.PI * 0.5, 0, 0],
+      position: [10.615, WEATHER_ICON_POSITION_Y, WEATHER_ICON_POSITION_Z],
+      rotation: WEATHER_ICON_ROTATION,
     },
     day07: {
       key: "day07",
-      weatherDate: weatherDataDay07,
+      weatherDate: weekWeather.day07.data,
       scale: 1.3,
-      position: [13.3, 2, 0.5],
-      rotation: [-Math.PI * 0.5, 0, 0],
+      position: [13.3, WEATHER_ICON_POSITION_Y, WEATHER_ICON_POSITION_Z],
+      rotation: WEATHER_ICON_ROTATION,
     },
   };
 
@@ -153,7 +184,7 @@ export default function Experience(props) {
         </group>
 
         {/* FALLING WEAHTER ICONS */}
-        {/* <FallingWeatherIcons weatherCondition={weatherCondition} /> */}
+        {/* <FallingWeatherIcons weatherDate={weatherDataToday} /> */}
 
         {/* WEATHER ICON */}
         <group position={[-0.35, 0, 0]}>
@@ -170,6 +201,8 @@ export default function Experience(props) {
         </group>
 
         {/* WEATHER TEXT */}
+        <ForecastTexts weekWeather={weekWeather} />
+
         {/* <Suspense>
           <WeatherText
             location={props.location}
@@ -242,6 +275,75 @@ function DailyWeatherIcon({ weatherDate, ...props }) {
         </group>
       </RigidBody>
     </>
+  );
+}
+
+function ForecastTexts({ weekWeather }) {
+  return (
+    <group rotation={[-Math.PI * 0.5, 0, 0]} position={[0, 2.0, 2.8]}>
+      {/* TODAY */}
+      <Text
+        color="#1C1C1C"
+        font="./fonts/abril-fatface-v23-latin-regular.woff"
+        fontSize={0.7}
+        letterSpacing={-0.05}
+        lineHeight={3}
+        anchorX="center"
+        scale={[1, 1.3, 1]}
+        position={[9.7, -4, 0]}
+      >
+        {weekWeather.today.data.temp.toFixed(1)}°C
+      </Text>
+
+      {/* 7 DAYS */}
+      <ForecastText date={weekWeather.day01} position={[-3.1, 0, 0]} />
+      <ForecastText date={weekWeather.day02} position={[-0.417, 0, 0]} />
+      <ForecastText date={weekWeather.day03} position={[2.266, 0, 0]} />
+      <ForecastText date={weekWeather.day04} position={[4.949, 0, 0]} />
+      <ForecastText date={weekWeather.day05} position={[7.632, 0, 0]} />
+      <ForecastText date={weekWeather.day06} position={[10.315, 0, 0]} />
+      <ForecastText date={weekWeather.day07} position={[13, 0, 0]} />
+    </group>
+  );
+}
+
+function ForecastText({ date, ...props }) {
+  return (
+    <group {...props}>
+      <Text
+        color="#373C38"
+        font="./fonts/abril-fatface-v23-latin-regular.woff"
+        fontSize={0.8}
+        letterSpacing={-0.05}
+        lineHeight={1}
+        anchorX="center"
+        position={[0, 3.8, 0]}
+      >
+        {date.utcStringdate.slice(0, 3)}
+      </Text>
+      <Text
+        color="#D0104C"
+        font="./fonts/abril-fatface-v23-latin-regular.woff"
+        fontSize={0.5}
+        letterSpacing={-0.05}
+        lineHeight={1}
+        anchorX="center"
+        position={[0, -0.3, 0]}
+      >
+        {date.data.temp.max.toFixed(1)}°C
+      </Text>
+      <Text
+        color="#005CAF"
+        font="./fonts/abril-fatface-v23-latin-regular.woff"
+        fontSize={0.5}
+        letterSpacing={-0.05}
+        lineHeight={1}
+        anchorX="center"
+        position={[0, -0.9, 0]}
+      >
+        {date.data.temp.min.toFixed(1)}°C
+      </Text>
+    </group>
   );
 }
 

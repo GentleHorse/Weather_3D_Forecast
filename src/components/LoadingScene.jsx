@@ -2,7 +2,7 @@ import { Center, Text3D } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-export default function LoadingScene({ error }) {
+export default function LoadingScene({ error, ...props }) {
   const text3D = useRef();
 
   useFrame((state, delta) => {
@@ -11,7 +11,7 @@ export default function LoadingScene({ error }) {
 
   return (
     <>
-      <group rotation={[0, Math.PI * 0.1, 0]}>
+      <group {...props}>
         <Center ref={text3D}>
           <Text3D
             font="./fonts/helvetiker_regular.typeface.json"
@@ -25,7 +25,7 @@ export default function LoadingScene({ error }) {
             bevelSegments={5}
           >
             Loading weather models ....
-            <meshNormalMaterial />
+            <meshBasicMaterial color="crimson" />
           </Text3D>
         </Center>
       </group>

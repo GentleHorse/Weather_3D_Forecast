@@ -42,7 +42,7 @@ export default function App() {
     try {
       const geoData = await getGeocoding();
       const response = await fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${geoData[0].lat}&lon=${geoData[0].lon}&appid=${apiKey}`
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${geoData[0].lat}&lon=${geoData[0].lon}&appid=${apiKey}&units=metric`
       );
 
       const data = await response.json();
@@ -69,8 +69,8 @@ export default function App() {
           <Backdrop />
           <div className={classes.searchBox}>
             <div className={classes.control}>
-              <h1>3D WEATHER APP</h1>
-              <p>Which city do you want to check for the current weather?</p>
+              <h1>7 DAYS WEATHER FORECAST</h1>
+              <p>Which city do you want to check?</p>
               <input
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
@@ -93,7 +93,9 @@ export default function App() {
         }}
       >
         {weatherData && (
-          <Suspense fallback={<LoadingScene />}>
+          <Suspense
+            fallback={<LoadingScene rotation={[-Math.PI * 0.5, 0, 0]} />}
+          >
             <Experience location={location} weather={weatherData} />
           </Suspense>
         )}
