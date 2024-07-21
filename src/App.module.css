@@ -2,16 +2,18 @@
  * FOR LAPTOP & TABLET
  */
 .searchBox {
-  margin: 20vh auto;
+  position: fixed;
+  margin: 2.5rem 5vw;
+  bottom: 0;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  background-color: rgba(253, 255, 255, 0.9);
-  padding: 3rem;
+  background-color: rgba(253, 255, 255, 0.45);
+  padding: 1.5rem;
   text-align: center;
-  width: 25rem;
-  z-index: 10;
+  width: 20rem;
+  z-index: 50;
   position: fixed;
-  left: calc(50% - 15.5rem);
+  /* left: calc(50% - 15.5rem); */
 }
 
 .control {
@@ -38,12 +40,12 @@
   display: block;
   font: inherit;
   text-transform: uppercase;
-  font-size: x-large;
+  font-size: large;
   text-align: center;
   color: antiquewhite;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.436);
-  border: 1px solid #1dd5f9;
+  border: none;
   padding: 1.5rem 0.25rem;
   margin: 0.5rem;
 }
@@ -63,11 +65,28 @@
   margin: 0.5rem;
 }
 
+.title {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  right: 0;
+  margin-right: 2.5rem;
+}
+
+.title h1 {
+  font-size: 100px;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  color:azure;
+}
+
 /*
  * FOR SMARTPHONE
  */
 @media (max-width: 480px) {
   .searchBox {
+    position: fixed;
     margin: 20vh auto;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
@@ -130,25 +149,10 @@
     margin: 0.5rem;
     font-size: medium;
   }
-}
 
-/* .videoPlayer {
-  background-color: black;
-  height: 100vh;
+  .title {
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+  }
 }
-
-.cityName {
-  position: absolute;
-  top: 2rem;
-  left: 1rem;
-  color: white;
-  font-family: "Courier Prime", monospace;
-}
-
-.cityName h1 {
-  font-size: 30px;
-}
-
-.cityName p {
-  font-size: 25px;
-} */

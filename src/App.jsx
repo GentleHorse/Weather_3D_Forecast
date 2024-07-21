@@ -4,19 +4,19 @@ import Experience from "./Experience.jsx";
 import Backdrop from "./components/Backdrop.jsx";
 import LoadingScene from "./components/LoadingScene.jsx";
 import classes from "./App.module.css";
+import Header from "./components/Header.jsx";
 
 export default function App() {
   const [location, setLocation] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const [isWindowOpen, setIsWindowOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   function closewindowHandler() {
     setIsWindowOpen(true);
   }
 
   const apiKey = "7a11ff201910162a879e7aa32d259914";
-
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
 
   async function getGeocoding() {
     const response = await fetch(
@@ -62,6 +62,17 @@ export default function App() {
     }
   }
 
+  function goBackSearchBoxHandler() {
+    setWeatherData(null);
+    setLocation("");
+    setIsWindowOpen(false);
+    setIsLoaded(false);
+  }
+
+  function finishLoadingHandler() {
+    setIsLoaded(true);
+  }
+
   return (
     <>
       {!isWindowOpen && (
@@ -69,8 +80,6 @@ export default function App() {
           <Backdrop />
           <div className={classes.searchBox}>
             <div className={classes.control}>
-              <h1>7 DAYS WEATHER FORECAST</h1>
-              <p>Which city do you want to check?</p>
               <input
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
@@ -80,7 +89,16 @@ export default function App() {
               <button onClick={getWeatherData}>Check weather</button>
             </div>
           </div>
+          <div className={classes.title}>
+            <h1>7 days</h1>
+            <h1>Weather</h1>
+            <h1>Forecast</h1>
+          </div>
         </>
+      )}
+
+      {isWindowOpen && isLoaded && (
+        <Header onGoBackSearch={goBackSearchBoxHandler} />
       )}
 
       <Canvas
@@ -89,14 +107,18 @@ export default function App() {
           fov: 45,
           near: 0.1,
           far: 200,
-          position: [0, 30, 8],
+          position: [0, 35, 10],
         }}
       >
         {weatherData && (
           <Suspense
             fallback={<LoadingScene rotation={[-Math.PI * 0.5, 0, 0]} />}
           >
-            <Experience location={location} weather={weatherData} />
+            <Experience
+              onFinishLoading={finishLoadingHandler}
+              location={location}
+              weather={weatherData}
+            />
           </Suspense>
         )}
       </Canvas>

@@ -1,0 +1,29 @@
+.header {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.button {
+  margin: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+}
+
+.icon {
+  margin: 0.2rem;
+  width: 25px;
+  height: 25px;
+}
+
+.text {
+  margin: 0.5rem;
+  color: azure;
+  font-size: large;
+}

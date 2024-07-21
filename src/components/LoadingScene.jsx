@@ -25,7 +25,7 @@ export default function LoadingScene({ error, ...props }) {
             bevelSegments={5}
           >
             Loading weather models ....
-            <meshBasicMaterial color="crimson" />
+            <meshBasicMaterial color="#FCFAF2" />
           </Text3D>
         </Center>
       </group>

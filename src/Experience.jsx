@@ -4,6 +4,7 @@ import {
   OrbitControls,
   Environment,
   Text,
+  Text3D,
   Center,
   Clone,
   PresentationControls,
@@ -11,7 +12,6 @@ import {
 import { Perf } from "r3f-perf";
 import { Physics, RigidBody } from "@react-three/rapier";
 import Stage from "./components/models/stage/Stage.jsx";
-import PostProcessingEffects from "./components/PostProcessingEffects.jsx";
 import FallingWeatherIcons from "./components/FallingWeatherIcons.jsx";
 
 const WEATHER_ICON_ROTATION = [-Math.PI * 0.5, 0, 0];
@@ -19,6 +19,13 @@ const WEATHER_ICON_POSITION_Y = 2.0;
 const WEATHER_ICON_POSITION_Z = 1.2;
 
 export default function Experience(props) {
+  /**
+   * SEND LOADED SIGNAL
+   */
+  useEffect(() => {
+    props.onFinishLoading();
+  }, []);
+
   /**
    * WEATHER DATA FROM TODAY TO 7 DAYS AFTER TODAY
    */
@@ -163,7 +170,7 @@ export default function Experience(props) {
       <Environment preset="apartment" />
       <directionalLight castShadow position={[1, 2, 3]} intensity={0.5} />
       <ambientLight intensity={0.5} />
-      <color args={["white"]} attach="background" />
+      <color args={["#FCFAF2"]} attach="background" />
 
       {/* <PresentationControls
         global
@@ -171,7 +178,7 @@ export default function Experience(props) {
         azimuth={[-0.95, 1.2]}
         // config={{ mass: 2, tension: 400 }}
       > */}
-      <Physics debug={true} gravity={[0, -3.5, 0]}>
+      <Physics debug={false} gravity={[0, -7.5, 0]}>
         {/* STAGE */}
         <group rotation={[0, -Math.PI * 0.065, 0]}>
           <RigidBody type="fixed" colliders="trimesh">
@@ -179,8 +186,30 @@ export default function Experience(props) {
           </RigidBody>
         </group>
 
+        {/* 3D CITY NAME */}
+        <group position={[8, 2.5, -8]} rotation={[-Math.PI * 0.5, 0, 0]}>
+          <Center>
+            <Text3D
+              font="./fonts/helvetiker_regular.typeface.json"
+              size={1.5}
+              height={0.2}
+              curveSegments={12}
+              bevelEnabled
+              bevelThickness={0.02}
+              bevelSize={0.02}
+              bevelOffset={0}
+              bevelSegments={5}
+            >
+              City: {props.location.toUpperCase()}
+              <meshBasicMaterial color="white" toneMapped={false} />
+            </Text3D>
+          </Center>
+        </group>
+
         {/* FALLING WEAHTER ICONS */}
-        {/* <FallingWeatherIcons weatherDate={weatherDataToday} /> */}
+        <group position={[-15, 0, 10]}>
+          <FallingWeatherIcons weatherDate={weekWeather.today.data} />
+        </group>
 
         {/* WEATHER ICON */}
         <group position={[-0.35, 0, 0]}>

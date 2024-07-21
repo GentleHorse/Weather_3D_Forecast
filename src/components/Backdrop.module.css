@@ -6,7 +6,8 @@
   height: 100vh;
   top: 0;
   left: 0;
-  background-image: url("../../public/images/icon-wallpaper.png");
+  z-index: 5;
+  background-image: url("../../public/images/loading-background-image.png");
   background-size: cover;
   background-repeat: no-repeat;
 }

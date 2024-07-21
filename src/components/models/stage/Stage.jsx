@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.4.1 ./public/models/stage/stage.glb
 */
 
 import React from "react";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, MeshTransmissionMaterial } from "@react-three/drei";
 
 export default function Stage(props) {
   const { nodes, materials } = useGLTF("/models/stage/stage.glb");
@@ -21,8 +21,23 @@ export default function Stage(props) {
       />
       <mesh
         geometry={nodes["glass-bowl"].geometry}
-        material={materials["glass-bowl-material"]}
-      />
+        // material={materials["glass-bowl-material"]}
+      >
+        <MeshTransmissionMaterial
+          backside
+          samples={6} // refraction samples, default: 6
+          transmission={1}
+          thickness={0.9}
+          chromaticAberration={0.05}
+          anisotropy={0.9} // the structural property of non-uniformity in different directions, default: 0.1
+          distortion={0.2} // default: 0
+          distortionScale={0.6}
+          temporalDistortion={0.1} // speed of movement, default: 0.0
+          iridescence={1} // certain surfaces that appear gradually to change colour
+          iridescenceIOR={1}
+          iridescenceThicknessRange={[100, 400]}
+        />
+      </mesh>
       <mesh
         geometry={nodes.spoon.geometry}
         material={materials["spoon-material"]}
