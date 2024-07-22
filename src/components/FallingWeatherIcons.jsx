@@ -3,7 +3,12 @@ import { useGLTF } from "@react-three/drei";
 import { InstancedRigidBodies } from "@react-three/rapier";
 import { Geometry, Base, Addition } from "@react-three/csg";
 
-export default function FallingWeatherIcons({ weatherDate }) {
+const Icon_Model_Num = 80;
+const Icon_Model_Scale = 0.2;
+const Icon_Model_Area_X = 2.5;
+const Icon_Model_Area_Z = 2.5;
+
+export default function FallingWeatherIcons({ weatherDate, ...props }) {
   /**
    * SET WEATHER CONDITION
    */
@@ -54,12 +59,12 @@ export default function FallingWeatherIcons({ weatherDate }) {
   const clearGeometry = (
     <Geometry useGroups>
       <Base
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={clear.nodes.Curve052.geometry}
         material={clear.materials.clearMaterial}
       />
       <Addition
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={clear.nodes.Curve052_1.geometry}
         material={clear.materials.edgeMaterial}
       />
@@ -71,12 +76,12 @@ export default function FallingWeatherIcons({ weatherDate }) {
   const cloudGeometry = (
     <Geometry useGroups>
       <Base
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={cloud.nodes.Curve001.geometry}
         material={cloud.materials.cloudMaterial}
       />
       <Addition
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={cloud.nodes.Curve001_1.geometry}
         material={cloud.materials.edgeMaterial}
       />
@@ -93,7 +98,7 @@ export default function FallingWeatherIcons({ weatherDate }) {
         material={drizzle.materials.rainMaterial}
       />
       <Addition
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={drizzle.nodes.Curve063_1.geometry}
         material={drizzle.materials.edgeMaterial}
       />
@@ -105,12 +110,12 @@ export default function FallingWeatherIcons({ weatherDate }) {
   const mistGeometry = (
     <Geometry useGroups>
       <Base
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={mist.nodes.Curve075.geometry}
         material={mist.materials.mistMaterial}
       />
       <Addition
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={mist.nodes.Curve075_1.geometry}
         material={mist.materials.edgeMaterial}
       />
@@ -122,12 +127,12 @@ export default function FallingWeatherIcons({ weatherDate }) {
   const rainGeometry = (
     <Geometry useGroups>
       <Base
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={rain.nodes.Curve057.geometry}
         material={rain.materials.rainMaterial}
       />
       <Addition
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={rain.nodes.Curve057_1.geometry}
         material={rain.materials.edgeMaterial}
       />
@@ -139,12 +144,12 @@ export default function FallingWeatherIcons({ weatherDate }) {
   const snowGeometry = (
     <Geometry useGroups>
       <Base
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={snow.nodes.Curve073.geometry}
         material={snow.materials.snowMaterial}
       />
       <Addition
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={snow.nodes.Curve073_1.geometry}
         material={snow.materials.edgeMaterial}
       />
@@ -156,12 +161,12 @@ export default function FallingWeatherIcons({ weatherDate }) {
   const thunderstormGeometry = (
     <Geometry useGroups>
       <Base
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={thunderstorm.nodes.Curve053.geometry}
         material={thunderstorm.materials.thunderstormMaterial}
       />
       <Addition
-        scale={0.15}
+        scale={Icon_Model_Scale}
         geometry={thunderstorm.nodes.Curve053_1.geometry}
         material={thunderstorm.materials.edgeMaterial}
       />
@@ -208,7 +213,7 @@ export default function FallingWeatherIcons({ weatherDate }) {
   /**
    * Object instances' count & matrices
    */
-  const objectsCount = 200;
+  const objectsCount = Icon_Model_Num;
   const instances = useMemo(() => {
     const instances = [];
 
@@ -216,9 +221,9 @@ export default function FallingWeatherIcons({ weatherDate }) {
       instances.push({
         key: "instance_" + i,
         position: [
-          (Math.random() - 0.5) * 10,
-          4 + i * 0.4,
-          (Math.random() - 0.5) * 10,
+          (Math.random() - 0.5) * Icon_Model_Area_X,
+          10 + i * 1.25,
+          (Math.random() - 0.5) * Icon_Model_Area_Z,
         ],
         rotation: [Math.random(), Math.random(), Math.random()],
       });
@@ -231,16 +236,18 @@ export default function FallingWeatherIcons({ weatherDate }) {
     <>
       {/* HUNDREDS OF OBJECTS */}
       {weatherGeometry && (
-        <Suspense>
-          <InstancedRigidBodies instances={instances} restitution={0.5}>
-            <instancedMesh
-              castShadow
-              args={[undefined, undefined, objectsCount]}
-            >
-              {weatherGeometry}
-            </instancedMesh>
-          </InstancedRigidBodies>
-        </Suspense>
+        <group {...props}>
+          <Suspense>
+            <InstancedRigidBodies instances={instances} restitution={0.5}>
+              <instancedMesh
+                castShadow
+                args={[undefined, undefined, objectsCount]}
+              >
+                {weatherGeometry}
+              </instancedMesh>
+            </InstancedRigidBodies>
+          </Suspense>
+        </group>
       )}
     </>
   );

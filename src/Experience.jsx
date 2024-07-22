@@ -13,6 +13,7 @@ import { Perf } from "r3f-perf";
 import { Physics, RigidBody } from "@react-three/rapier";
 import Stage from "./components/models/stage/Stage.jsx";
 import FallingWeatherIcons from "./components/FallingWeatherIcons.jsx";
+import PostProcessingEffects from "./components/PostProcessingEffects.jsx";
 
 const WEATHER_ICON_ROTATION = [-Math.PI * 0.5, 0, 0];
 const WEATHER_ICON_POSITION_Y = 2.0;
@@ -35,32 +36,32 @@ export default function Experience(props) {
       utcStringdate: new Date(props.weather.current.dt * 1000).toUTCString(),
     },
     day01: {
+      data: props.weather.daily[0],
+      utcStringdate: new Date(props.weather.daily[0].dt * 1000).toUTCString(),
+    },
+    day02: {
       data: props.weather.daily[1],
       utcStringdate: new Date(props.weather.daily[1].dt * 1000).toUTCString(),
     },
-    day02: {
+    day03: {
       data: props.weather.daily[2],
       utcStringdate: new Date(props.weather.daily[2].dt * 1000).toUTCString(),
     },
-    day03: {
+    day04: {
       data: props.weather.daily[3],
       utcStringdate: new Date(props.weather.daily[3].dt * 1000).toUTCString(),
     },
-    day04: {
+    day05: {
       data: props.weather.daily[4],
       utcStringdate: new Date(props.weather.daily[4].dt * 1000).toUTCString(),
     },
-    day05: {
+    day06: {
       data: props.weather.daily[5],
       utcStringdate: new Date(props.weather.daily[5].dt * 1000).toUTCString(),
     },
-    day06: {
+    day07: {
       data: props.weather.daily[6],
       utcStringdate: new Date(props.weather.daily[6].dt * 1000).toUTCString(),
-    },
-    day07: {
-      data: props.weather.daily[7],
-      utcStringdate: new Date(props.weather.daily[7].dt * 1000).toUTCString(),
     },
   };
 
@@ -170,7 +171,7 @@ export default function Experience(props) {
       <Environment preset="apartment" />
       <directionalLight castShadow position={[1, 2, 3]} intensity={0.5} />
       <ambientLight intensity={0.5} />
-      <color args={["#FCFAF2"]} attach="background" />
+      <color args={["#434343"]} attach="background" />
 
       {/* <PresentationControls
         global
@@ -208,7 +209,10 @@ export default function Experience(props) {
 
         {/* FALLING WEAHTER ICONS */}
         <group position={[-15, 0, 10]}>
-          <FallingWeatherIcons weatherDate={weekWeather.today.data} />
+          <FallingWeatherIcons
+            weatherDate={weekWeather.today.data}
+            position={[1.7, 0, 0]}
+          />
         </group>
 
         {/* WEATHER ICON */}

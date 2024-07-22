@@ -1,13 +1,12 @@
 .backdrop {
   position: fixed;
-  z-index: 1;
   /* background-color: rgba(0, 0, 0, 0.75); */
   width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: 5;
-  background-image: url("../../public/images/loading-background-image.png");
+  /* z-index: 5; */
+  background-image: url("../../public/images/icon-wallpaper.png");
   background-size: cover;
   background-repeat: no-repeat;
 }

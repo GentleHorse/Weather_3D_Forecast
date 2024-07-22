@@ -77,28 +77,36 @@ export default function App() {
     <>
       {!isWindowOpen && (
         <>
-          <Backdrop />
-          <div className={classes.searchBox}>
-            <div className={classes.control}>
-              <input
-                value={location}
-                onChange={(event) => setLocation(event.target.value)}
-                placeholder="CITY NAME ?"
-                type="text"
-              />
-              <button onClick={getWeatherData}>Check weather</button>
+          {/* <Backdrop /> */}
+          <div className={classes.home}>
+            <div className={classes.searchBox}>
+              <div className={classes.control}>
+                <input
+                  value={location}
+                  onChange={(event) => setLocation(event.target.value)}
+                  placeholder="CITY NAME ?"
+                  type="text"
+                />
+                <button onClick={getWeatherData}>Check weather</button>
+              </div>
             </div>
-          </div>
-          <div className={classes.title}>
-            <h1>7 days</h1>
-            <h1>Weather</h1>
-            <h1>Forecast</h1>
+            <div className={classes.heroArea}>
+              <div className={classes.title}>
+                <h1>7 days</h1>
+                <h1>Weather</h1>
+                <h1>Forecast</h1>
+              </div>
+            </div>
           </div>
         </>
       )}
 
       {isWindowOpen && isLoaded && (
         <Header onGoBackSearch={goBackSearchBoxHandler} />
+      )}
+
+      {isWindowOpen && !isLoaded && (
+        <Backdrop />
       )}
 
       <Canvas
@@ -112,7 +120,7 @@ export default function App() {
       >
         {weatherData && (
           <Suspense
-            fallback={<LoadingScene rotation={[-Math.PI * 0.5, 0, 0]} />}
+            fallback={<LoadingScene rotation={[-Math.PI * 0.4, 0, 0]} />}
           >
             <Experience
               onFinishLoading={finishLoadingHandler}
