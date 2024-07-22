@@ -7,8 +7,9 @@
   height: 100vh;
   width: 100vw;
   background-image: url("../public/images/loading-background-image.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
 
 .searchBox {
   position: absolute;
@@ -96,7 +97,7 @@
   margin: 0;
   padding: 0;
   text-align: right;
-  color:#FFFFFB;
+  color: #fffffb;
 }
 
 /*
@@ -110,6 +111,8 @@
     height: 100vh;
     width: 100vw;
     background-image: url("../public/images/loading-background-image.png");
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .searchBox {
@@ -124,7 +127,7 @@
     flex-direction: column;
     align-items: center;
   }
-  
+
   .control {
     padding-left: 2.5rem;
     padding-right: 2.5rem;

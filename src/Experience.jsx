@@ -164,7 +164,7 @@ export default function Experience(props) {
     <>
       {/* DEBUG TOOLS */}
       {/* <Perf position="top-left" /> */}
-      <OrbitControls makeDefault />
+      {/* <OrbitControls makeDefault /> */}
       {/* <axesHelper /> */}
 
       {/* ENVIRONMENT */}
@@ -173,12 +173,12 @@ export default function Experience(props) {
       <ambientLight intensity={0.5} />
       <color args={["#434343"]} attach="background" />
 
-      {/* <PresentationControls
+      <PresentationControls
         global
-        polar={[0.0, 0.0]}
+        polar={[-1.4, 0.0]}
         azimuth={[-0.95, 1.2]}
         // config={{ mass: 2, tension: 400 }}
-      > */}
+      >
       <Physics debug={false} gravity={[0, -7.5, 0]}>
         {/* STAGE */}
         <group rotation={[0, -Math.PI * 0.065, 0]}>
@@ -232,7 +232,7 @@ export default function Experience(props) {
         {/* FORECAST TEXTS */}
         <ForecastTexts weekWeather={weekWeather} />
       </Physics>
-      {/* </PresentationControls> */}
+      </PresentationControls>
     </>
   );
 }
