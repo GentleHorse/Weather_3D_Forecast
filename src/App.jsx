@@ -92,7 +92,7 @@ export default function App() {
             </div>
             <div className={classes.heroArea}>
               <div className={classes.title}>
-                <h1>7 days</h1>
+                <h1>7 Day</h1>
                 <h1>Weather</h1>
                 <h1>Forecast</h1>
               </div>

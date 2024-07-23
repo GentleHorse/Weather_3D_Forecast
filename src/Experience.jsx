@@ -164,7 +164,13 @@ export default function Experience(props) {
     <>
       {/* DEBUG TOOLS */}
       {/* <Perf position="top-left" /> */}
-      {/* <OrbitControls makeDefault /> */}
+      <OrbitControls 
+       minPolarAngle={0.0}
+       maxPolarAngle={Math.PI * 0.4}
+       minAzimuthAngle={-0.95}
+       maxAzimuthAngle={1.2}
+       maxDistance={45.0}
+      />
       {/* <axesHelper /> */}
 
       {/* ENVIRONMENT */}
@@ -173,66 +179,59 @@ export default function Experience(props) {
       <ambientLight intensity={0.5} />
       <color args={["#434343"]} attach="background" />
 
-      <PresentationControls
-        global
-        polar={[-1.4, 0.0]}
-        azimuth={[-0.95, 1.2]}
-        // config={{ mass: 2, tension: 400 }}
-      >
-      <Physics debug={false} gravity={[0, -7.5, 0]}>
-        {/* STAGE */}
-        <group rotation={[0, -Math.PI * 0.065, 0]}>
-          <RigidBody type="fixed" colliders="trimesh">
-            <Stage />
-          </RigidBody>
-        </group>
+        <Physics debug={false} gravity={[0, -7.5, 0]}>
+          {/* STAGE */}
+          <group rotation={[0, -Math.PI * 0.065, 0]}>
+            <RigidBody type="fixed" colliders="trimesh">
+              <Stage />
+            </RigidBody>
+          </group>
 
-        {/* 3D CITY NAME */}
-        <group position={[8, 2.5, -8]} rotation={[-Math.PI * 0.5, 0, 0]}>
-          <Center>
-            <Text3D
-              font="./fonts/helvetiker_regular.typeface.json"
-              size={1.5}
-              height={0.2}
-              curveSegments={12}
-              bevelEnabled
-              bevelThickness={0.02}
-              bevelSize={0.02}
-              bevelOffset={0}
-              bevelSegments={5}
-            >
-              City: {props.location.toUpperCase()}
-              <meshBasicMaterial color="white" toneMapped={false} />
-            </Text3D>
-          </Center>
-        </group>
+          {/* 3D CITY NAME */}
+          <group position={[8, 2.5, -8]} rotation={[-Math.PI * 0.5, 0, 0]}>
+            <Center>
+              <Text3D
+                font="./fonts/helvetiker_regular.typeface.json"
+                size={1.5}
+                height={0.2}
+                curveSegments={12}
+                bevelEnabled
+                bevelThickness={0.02}
+                bevelSize={0.02}
+                bevelOffset={0}
+                bevelSegments={5}
+              >
+                City: {props.location.toUpperCase()}
+                <meshBasicMaterial color="white" toneMapped={false} />
+              </Text3D>
+            </Center>
+          </group>
 
-        {/* FALLING WEAHTER ICONS */}
-        <group position={[-15, 0, 10]}>
-          <FallingWeatherIcons
-            weatherDate={weekWeather.today.data}
-            position={[1.7, 0, 0]}
-          />
-        </group>
+          {/* FALLING WEAHTER ICONS */}
+          <group position={[-15, 0, 10]}>
+            <FallingWeatherIcons
+              weatherDate={weekWeather.today.data}
+              position={[1.7, 0, 0]}
+            />
+          </group>
 
-        {/* WEATHER ICON */}
-        <group position={[-0.35, 0, 0]}>
-          {weatherIconsArray.map((weatherIcon, index) => (
-            <group key={index} name={index}>
-              <DailyWeatherIcon
-                weatherDate={weatherIcon.weatherDate}
-                scale={weatherIcon.scale}
-                position={weatherIcon.position}
-                rotation={weatherIcon.rotation}
-              />
-            </group>
-          ))}
-        </group>
+          {/* WEATHER ICON */}
+          <group position={[-0.35, 0, 0]}>
+            {weatherIconsArray.map((weatherIcon, index) => (
+              <group key={index} name={index}>
+                <DailyWeatherIcon
+                  weatherDate={weatherIcon.weatherDate}
+                  scale={weatherIcon.scale}
+                  position={weatherIcon.position}
+                  rotation={weatherIcon.rotation}
+                />
+              </group>
+            ))}
+          </group>
 
-        {/* FORECAST TEXTS */}
-        <ForecastTexts weekWeather={weekWeather} />
-      </Physics>
-      </PresentationControls>
+          {/* FORECAST TEXTS */}
+          <ForecastTexts weekWeather={weekWeather} />
+        </Physics>
     </>
   );
 }
