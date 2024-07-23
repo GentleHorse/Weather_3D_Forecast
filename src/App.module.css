@@ -131,7 +131,7 @@
   .control {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
-    padding-bottom: 5rem;
+    padding-bottom: 8rem;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -139,7 +139,7 @@
   }
 
   .heroArea {
-    height: 60vh;
+    height: 45vh;
     width: 100vw;
     right: 0;
     padding-left: 2vw;
